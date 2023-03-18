@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/products', [DashboardProductController::class, 'index'])->name('dashboard-product');
 
 Auth::routes();
 

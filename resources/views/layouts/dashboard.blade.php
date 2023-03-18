@@ -20,10 +20,10 @@
             <!-- Sidebar -->
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
-                    <img src="{{ ('templates/images/dashboard-store-logo.svg') }}" alt="" class="my-4" />
+                    <img src="{{ asset('templates/images/dashboard-store-logo.svg') }}" alt="" class="my-4" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="/dashboard.html" class="list-group-item list-group-item-action active">Dashboard</a>
+                    <a href="/dashboard.html" class="list-group-item list-group-item-action">Dashboard</a>
                     <a href="/dashboard-products.html" class="list-group-item list-group-item-action">My Products</a>
                     <a href="/dashboard-transactions.html"
                     class="list-group-item list-group-item-action">Transactions</a>
@@ -51,7 +51,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ ('templates/images/icon-user.png') }}" alt=""
+                            <img src="{{ asset('templates/images/icon-user.png') }}" alt=""
                             class="rounded-circle mr-2 profile-picture" />
                             Hi, Angga
                         </a>
@@ -64,7 +64,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link d-inline-block mt-2" href="#">
-                            <img src="{{ ('templates/images/icon-cart-empty.svg') }}" alt="" />
+                            <img src="{{ asset('templates/images/icon-cart-empty.svg') }}" alt="" />
                         </a>
                     </li>
                 </ul>
