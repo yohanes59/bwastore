@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
@@ -22,6 +23,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/success', [CartController::class, 'success'])->name('success');
+
+Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
 Auth::routes();
 
