@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\DashboardTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,6 @@ Route::get('/dashboard/products', [DashboardProductController::class, 'index'])-
 Route::get('/dashboard/products/create', [DashboardProductController::class, 'create'])->name('dashboard-product-create');
 Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])->name('dashboard-products-details');
 
+Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
 
 Auth::routes();
-
