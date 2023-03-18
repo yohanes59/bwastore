@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardTransactionController;
+use App\Http\Controllers\DashboardSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,8 @@ Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'deta
 
 Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
 Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
+
+Route::get('/dashboard/settings', [DashboardSettingController::class, 'store'])->name('dashboard-settings-store');
+Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-settings-account');
 
 Auth::routes();
