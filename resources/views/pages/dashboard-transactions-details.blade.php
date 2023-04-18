@@ -50,9 +50,9 @@ data-aos="fade-up"
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <div class="product-title">Status</div>
+                    <div class="product-title">Payment Status</div>
                     <div class="product-subtitle text-danger">
-                      status
+                      Pending
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
@@ -113,7 +113,7 @@ data-aos="fade-up"
                   <div class="col-12">
                     <div class="row">
                       <div class="col-md-3">
-                        <div class="product-title">Status</div>
+                        <div class="product-title">Shipping Status</div>
                         <select
                         name="status"
                         id="status"
