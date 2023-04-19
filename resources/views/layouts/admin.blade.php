@@ -11,7 +11,7 @@
 
     @stack('prepend-style')
     @include('includes.style')
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
     @stack('addon-style')
 </head>
 
@@ -26,7 +26,7 @@
                 <div class="list-group list-group-flush">
                     <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
                     <a href="" class="list-group-item list-group-item-action">Products</a>
-                    <a href="" class="list-group-item list-group-item-action">Categories</a>
+                    <a href="{{ route('category.index') }}" class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}">Categories</a>
                     <a href="" class="list-group-item list-group-item-action">Transactions</a>
                     <a href="" class="list-group-item list-group-item-action">Users</a>
                     <a href="" class="list-group-item list-group-item-action">Sign Out</a>
@@ -88,7 +88,7 @@
 @stack('prepend-script')
 <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
