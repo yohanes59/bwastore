@@ -10,7 +10,7 @@
             <div class="dashboard-heading">
                 <h2 class="dashboard-title">Category</h2>
                 <p class="dashboard-subtitle">
-                    List of Categories
+                    Create New Category
                 </p>
             </div>
             <div class="dashboard-content">

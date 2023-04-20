@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Admin\ProductRequest;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,10 @@ class UserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::query();
+            $query = Product::with(['user', 'category']);
+            // $query = Product::with(['user', 'category'])->withTrashed();
+            // dari func relasi user dan category di model product
+            // ->withTrashed() untuk melihat data yang disoft delete
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
@@ -31,10 +34,10 @@ class UserController extends Controller
                                     Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="' . route('user.edit', $item->id) . '">
+                                <a class="dropdown-item" href="' . route('product.edit', $item->id) . '">
                                     Sunting
                                 </a>
-                                <form action="' . route('user.destroy', $item->id) . '" method="POST">
+                                <form action="' . route('product.destroy', $item->id) . '" method="POST">
                                 ' . method_field('delete') . csrf_field() . '
                                 <button type="submit" class="dropdown-item text-danger">
                                     Hapus
@@ -48,7 +51,7 @@ class UserController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.user.index');
+        return view('pages.admin.product.index');
     }
 
     /**
@@ -58,7 +61,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.user.create');
+        $users = User::all();
+        $categories = Category::all();
+
+        return view('pages.admin.product.create', [
+            'users' => $users,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -67,15 +76,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
 
-        $data['password'] = bcrypt($request->password);
+        $data['slug'] = Str::slug($request->name);
 
-        User::create($data);
+        Product::create($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -97,9 +106,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $item = Product::findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
 
-        return view('pages.admin.user.edit', ['item' => $item]);
+        return view('pages.admin.product.edit', [
+            'item' => $item,
+            'users' => $users,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -109,21 +124,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
 
-        if ($request->password) {
-            $data['password'] = bcrypt($request->password);
-        } else {
-            // agar request password tidak tersimpan kosong/tidak menyertakan field password untuk di kirim ke db
-            unset($data['password']);
-        }
+        $item = Product::findOrFail($id);
 
-        $item = User::findOrFail($id);
+        $data['slug'] = Str::slug($request->name);
+
         $item->update($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -134,9 +145,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $item = User::findOrFail($id);
+        $item = Product::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 }
