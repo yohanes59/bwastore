@@ -7,13 +7,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\DashboardTransactionController;
 
 /*
@@ -55,6 +56,7 @@ Route::prefix('admin')
         Route::resource('category', AdminCategoryController::class);
         Route::resource('user', UserController::class);
         Route::resource('product', ProductController::class);
+        Route::resource('product-gallery', ProductGalleryController::class);
     });
 
 Auth::routes();
