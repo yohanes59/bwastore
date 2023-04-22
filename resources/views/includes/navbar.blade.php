@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-inline-block mt-2" href="#">
+                        <a class="nav-link d-inline-block mt-2" href="{{ route('cart') }}">
                             @php
                                 $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
                             @endphp
@@ -72,7 +72,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-inline-block" href="#">
+                        <a class="nav-link d-inline-block" href="{{ route('cart') }}">
                             Cart
                         </a>
                     </li>
