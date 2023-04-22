@@ -33,7 +33,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img src="/images/icon-user.png" alt="" class="rounded-circle mr-2 profile-picture" />
+                            <img src="{{ asset('templates/images/icon-user.png') }}" alt="" class="rounded-circle mr-2 profile-picture" />
                             Hi, {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,7 +51,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link d-inline-block mt-2" href="#">
-                            <img src="/images/icon-cart-empty.svg" alt="" />
+                            @php
+                                $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                            @endphp
+                            @if ($carts > 0)
+                                <img src="{{ asset('templates/images/icon-cart-filled.svg') }}" alt="" />
+                                <div class="cart-badge">{{ $carts }}</div>
+                            @else
+                                <img src="{{ asset('templates/images/icon-cart-empty.svg') }}" alt="" />
+                            @endif
                         </a>
                     </li>
                 </ul>
